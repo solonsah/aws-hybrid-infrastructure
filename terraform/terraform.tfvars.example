@@ -1,0 +1,41 @@
+aws_region   = "us-east-1"
+project_name = "aws-hybrid-infrastructure"
+environment  = "demo"
+
+vpc_cidr = "10.20.0.0/16"
+
+availability_zones = [
+  "us-east-1a",
+  "us-east-1b"
+]
+
+public_subnet_cidrs = [
+  "10.20.10.0/24",
+  "10.20.20.0/24"
+]
+
+private_subnet_cidrs = [
+  "10.20.110.0/24",
+  "10.20.120.0/24"
+]
+
+simulated_on_premises_cidr = "172.20.0.0/16"
+
+# Disabled by default to avoid recurring NAT Gateway charges.
+enable_nat_gateway = false
+
+# Add only approved administrative source networks in real deployments.
+# Never commit sensitive or workplace-specific addresses.
+allowed_admin_cidrs = []
+
+# Site-to-Site VPN resources incur recurring charges.
+enable_site_to_site_vpn = false
+
+# Supply a real public gateway address only through an ignored local
+# terraform.tfvars file or an approved secret-management process.
+customer_gateway_ip      = null
+customer_gateway_bgp_asn = 65000
+
+# CloudWatch log ingestion and storage can incur charges.
+enable_vpc_flow_logs   = false
+flow_log_retention_days = 30
